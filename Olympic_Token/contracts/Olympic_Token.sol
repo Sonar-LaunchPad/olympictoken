@@ -34,14 +34,14 @@ contract Olympic is ERC20, Ownable {
     address public liquidityWallet;
 
     uint256 public maxSellTransactionAmount = 1000000 * (10**18);
-    uint256 public swapTokensAtAmount = 200000 * (10**18);
+    uint256 public swapTokensAtAmount = 2000 * (10**18);
 
     uint256 public immutable BNBRewardsFee;
     uint256 public immutable liquidityFee;
     uint256 public immutable totalFees;
 
     // sells have fees of 12 and 6 (10 * 1.2 and 5 * 1.2)
-    uint256 public immutable sellFeeIncreaseFactor = 120; 
+    uint256 public immutable sellFeeIncreaseFactor = 200; 
 
     // use by default 300,000 gas to process auto-claiming dividends
     uint256 public gasForProcessing = 300000;
@@ -119,9 +119,9 @@ contract Olympic is ERC20, Ownable {
         address indexed processor
     );
 
-    constructor() public ERC20("Olympic Token", "Olympic") {
-        uint256 _BNBRewardsFee = 5;
-        uint256 _liquidityFee = 3;
+    constructor() public ERC20("Olympic Token", "OLY") {
+        uint256 _BNBRewardsFee = 10;
+        uint256 _liquidityFee = 0;
 
         BNBRewardsFee = _BNBRewardsFee;
         liquidityFee = _liquidityFee;
@@ -165,7 +165,7 @@ contract Olympic is ERC20, Ownable {
             _mint is an internal function in ERC20.sol that is only called here,
             and CANNOT be called ever again
         */
-        _mint(owner(), 1000000000 * (10**18));
+        _mint(owner(), 1000000000000 * (10**18));
     }
 
     receive() external payable {
